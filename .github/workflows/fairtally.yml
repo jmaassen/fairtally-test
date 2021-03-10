@@ -23,12 +23,14 @@ jobs:
        APIKEY_GITHUB: ${{ secrets.apikey }}
 
     steps:
+      - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with: 
           python-version: 3.8
+
       - name: Install some deps
           run: sudo apt-get -y install jq
-      - name: Install fairfairtally 
+      - name: Install fairfairtally
           run: pip3 install --user howfairis fairtally
-      - name: Run fairtally 
+      - name: Run fairtally
           run: fairtally -o report.html https://github.com/xenon-middleware/xenon
