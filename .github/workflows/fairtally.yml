@@ -7,7 +7,12 @@
 
 name: Fairtally
 
-on: [push]  
+on:  
+  schedule:   
+    - cron: "0 * * * *"
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
 jobs:
   fairtally:
