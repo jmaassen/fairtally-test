@@ -32,3 +32,13 @@ jobs:
         run: pip3 install wheel howfairis fairtally
       - name: Run fairtally
         run: fairtally -o reports/report-`date +%Y%m%d-%H%M`.html https://github.com/xenon-middleware/xenon
+      - name: Commit report
+        run: | 
+           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+           git config --local user.name "github-actions[bot]"
+           git add reports
+           git commit -m "Add generated report" -a
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
