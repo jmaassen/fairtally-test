@@ -31,4 +31,4 @@ jobs:
       - name: Install fairfairtally
         run: pip3 install wheel howfairis fairtally
       - name: Run fairtally
-        run: fairtally -o report.html https://github.com/xenon-middleware/xenon
+        run: fairtally -o reports/report-`date +%Y%m%d-%H%M`.html https://github.com/xenon-middleware/xenon
