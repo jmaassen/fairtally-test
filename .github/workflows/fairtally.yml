@@ -23,6 +23,9 @@ jobs:
        APIKEY_GITHUB: ${{ secrets.APIKEY_GITHUB }}
 
     steps:
+      - name: get a timestamp
+        id: timestamp
+        run: echo "::set-output name=date::$(date +'+%Y%m%d-%H%M')"
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with: 
@@ -30,8 +33,15 @@ jobs:
 
       - name: Install fairfairtally
         run: pip3 install wheel howfairis fairtally
+
+      - name: Get the data dump from the RSD
+        run: curl https://research-software.nl/api/software > software.json
+
+      - name: Extract the list of URLs 
+        run: cat software.json | jq -r '[.[].repositoryURLs.github] | flatten | .[]' > urls.txt
+        
       - name: Run fairtally
-        run: fairtally -o reports/report-`date +%Y%m%d-%H%M`.html https://github.com/xenon-middleware/xenon
+        run: fairtally -o reports/report-${{steps.timestamp.outputs.date}}.html -i urls.txt 
       - name: Commit report
         run: | 
            git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
