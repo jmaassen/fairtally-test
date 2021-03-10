@@ -23,9 +23,11 @@ jobs:
        APIKEY_GITHUB: ${{ secrets.APIKEY_GITHUB }}
 
     steps:
+      - name: Echo API key 
+        run: echo $APIKEY_GITHUB       
       - name: get a timestamp
         id: timestamp
-        run: echo "::set-output name=date::$(date +'+%Y%m%d-%H%M')"
+        run: echo "::set-output name=date::$(date +'+%Y%m%d-%H%M')"     
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with: 
