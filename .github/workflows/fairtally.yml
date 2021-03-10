@@ -38,9 +38,9 @@ jobs:
         run: cat software.json | jq -r '[.[].repositoryURLs.github] | flatten | .[]' > urls.txt
         
       - name: Run fairtally
+        env: APIKEY_GITHUB: ${{ secrets.APIKEY_GITHUB }} 
         run: fairtally -o reports/report-${{steps.timestamp.outputs.date}}.html -i urls.txt 
-        env: 
-           APIKEY_GITHUB: ${{ secrets.APIKEY_GITHUB }}
+        if: env.APIKEY_GITHUB != null    
 
       - name: Commit report
         run: | 
