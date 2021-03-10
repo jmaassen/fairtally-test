@@ -19,15 +19,10 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    env: 
-       APIKEY_GITHUB: ${{ secrets.APIKEY_GITHUB }}
-
     steps:
-      - name: Echo API key 
-        run: echo $APIKEY_GITHUB       
       - name: get a timestamp
         id: timestamp
-        run: echo "::set-output name=date::$(date +'+%Y%m%d-%H%M')"     
+        run: echo "::set-output name=date::$(date '+%Y%m%d-%H%M')"     
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with: 
@@ -44,6 +39,9 @@ jobs:
         
       - name: Run fairtally
         run: fairtally -o reports/report-${{steps.timestamp.outputs.date}}.html -i urls.txt 
+        env: 
+           APIKEY_GITHUB: ${{ secrets.APIKEY_GITHUB }}
+
       - name: Commit report
         run: | 
            git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
