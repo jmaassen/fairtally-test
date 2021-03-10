@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env: 
-       APIKEY_GITHUB: ${{ secrets.apikey }}
+       APIKEY_GITHUB: ${{ secrets.APIKEY_GITHUB }}
 
     steps:
       - uses: actions/checkout@v2
