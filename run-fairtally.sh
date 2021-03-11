@@ -2,6 +2,8 @@
 
 # Check if the relevant enviroment variable is set
 
+echo "Parameters are: $@"
+
 if [[ ! -v "$APIKEY_GITHUB" ]]; then
     echo "APIKEY_GITHUB is not set"
     exit 1
