@@ -20,6 +20,6 @@ fi
 #cat software.json | jq -r '[.[].repositoryURLs.github] | flatten | .[]' > urls.>
 
 # Run fairtally
-fairtally -o reports/report-$TIMESTAMP.html -i urls.txt
+fairtally -o doc/reports/report-$TIMESTAMP.html -i urls.txt
 
 
