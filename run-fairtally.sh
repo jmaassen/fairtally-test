@@ -1,11 +1,8 @@
 #!/bin/bash
 
-# Check if the relevant enviroment variable is set
+# Set relevant enviroment variable is set
 
-echo "Parameters are: $@"
-
-echo "Length of parameters are:"
-expr length $@
+export APIKEY_GITHUB=$1
 
 if [[ ! -v "$APIKEY_GITHUB" ]]; then
     echo "APIKEY_GITHUB is not set"
@@ -17,3 +14,4 @@ else
     echo "APIKEY_GITHUB has the value: $DEPLOY_ENV"
 fi
 
+fairtally -o reports/report-${{steps.timestamp.outputs.date}}.html -i urls.txt
