@@ -2,6 +2,8 @@
 
 # Set relevant enviroment variable is set
 
+TIMESTAMP=`date +%Y%m%d-%H%M`
+
 export APIKEY_GITHUB="$1"
 
 echo "APIKEY_GITHUB is set to $APIKEY_GITHUB"
@@ -11,4 +13,13 @@ if [[ -z "$APIKEY_GITHUB" ]]; then
     exit 1
 fi
 
-fairtally -o reports/report-${{steps.timestamp.outputs.date}}.html -i urls.txt
+# Get the data dump from the RSD
+#curl https://research-software.nl/api/software > software.json
+
+# Extract the list of URLs
+#cat software.json | jq -r '[.[].repositoryURLs.github] | flatten | .[]' > urls.>
+
+# Run fairtally
+fairtally -o reports/report-$TIMESTAMP.html -i urls.txt
+
+
