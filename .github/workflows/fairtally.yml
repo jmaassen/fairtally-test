@@ -40,8 +40,7 @@ jobs:
       - name: Run fairtally
         env: 
           APIKEY_GITHUB: ${{ secrets.APIKEY_GITHUB }}
-        if: env.APIKEY_GITHUB != null    
-        run: /bin/bash run-fairtally.sh
+        run: /bin/bash run-fairtally.sh ${{ secrets.APIKEY_GITHUB }}
 #fairtally -o reports/report-${{steps.timestamp.outputs.date}}.html -i urls.txt
 
       - name: Commit report
