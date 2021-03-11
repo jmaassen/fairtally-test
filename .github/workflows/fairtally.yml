@@ -38,16 +38,13 @@ jobs:
         run: cat software.json | jq -r '[.[].repositoryURLs.github] | flatten | .[]' > urls.txt
         
       - name: Run fairtally
-        env: 
-          APIKEY_GITHUB: ${{ secrets.APIKEY_GITHUB }}
         run: /bin/bash run-fairtally.sh ${{ secrets.APIKEY_GITHUB }}
-#fairtally -o reports/report-${{steps.timestamp.outputs.date}}.html -i urls.txt
 
       - name: Commit report
         run: | 
            git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
            git config --local user.name "github-actions[bot]"
-           git add reports
+           git add docs
            git commit -m "Add generated report" -a
       - name: Push changes
         uses: ad-m/github-push-action@master
