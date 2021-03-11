@@ -4,6 +4,9 @@
 
 echo "Parameters are: $@"
 
+echo "Length of parameters are:"
+expr length $@
+
 if [[ ! -v "$APIKEY_GITHUB" ]]; then
     echo "APIKEY_GITHUB is not set"
     exit 1
