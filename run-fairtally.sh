@@ -23,5 +23,5 @@ fi
 fairtally -o docs/reports/report-$TIMESTAMP.html -i urls.txt
 
 # Add the link to the output to the index page
-echo "[$TIMESTAMP](https://jmaassen.github.io/fairtally-test/reports/report-$TIMESTAMP.html)" >> docs/index.md
+echo "[$TIMESTAMP](https://jmaassen.github.io/fairtally-test/reports/report-$TIMESTAMP.html)  " >> docs/index.md
 
